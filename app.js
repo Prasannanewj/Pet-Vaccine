@@ -1,20 +1,22 @@
 (function () {
   const storageKey = "pet-vaccine-personalization-demo-v1";
-  const initialState = {
-    interest: "general",
-    consent: false,
-    analyticsConsent: false,
-    optedOut: false,
-    suppressed: false,
-    lastSentAt: null,
-    variant: Math.random() < 0.5 ? "control" : "tailored",
-    counts: {
-      control: { visits: 0, actions: 0 },
-      tailored: { visits: 0, actions: 0 },
-    },
-    visitRecorded: false,
-    actionRecorded: false,
-  };
+  function createInitialState() {
+    return {
+      interest: "general",
+      consent: false,
+      analyticsConsent: false,
+      optedOut: false,
+      suppressed: false,
+      lastSentAt: null,
+      variant: Math.random() < 0.5 ? "control" : "tailored",
+      counts: {
+        control: { visits: 0, actions: 0 },
+        tailored: { visits: 0, actions: 0 },
+      },
+      visitRecorded: false,
+      actionRecorded: false,
+    };
+  }
   const elements = {
     interest: document.querySelector("#interest"),
     consent: document.querySelector("#personalization-consent"),
@@ -40,12 +42,13 @@
     try {
       const stored = JSON.parse(localStorage.getItem(storageKey));
       if (stored && stored.counts && stored.variant) {
-        return { ...initialState, ...stored, counts: { ...initialState.counts, ...stored.counts } };
+        const freshState = createInitialState();
+        return { ...freshState, ...stored, counts: { ...freshState.counts, ...stored.counts } };
       }
     } catch (error) {
       localStorage.removeItem(storageKey);
     }
-    return initialState;
+    return createInitialState();
   }
 
   let state = readState();
@@ -68,18 +71,38 @@
     elements.interest.value = state.interest;
     elements.consent.checked = state.consent && !state.optedOut;
     elements.analyticsConsent.checked = state.analyticsConsent;
-    elements.preferenceStatus.textContent = personalized()
-      ? "Your approved interest is being used on this device only."
-      : "Personalization is off. You’ll see the general experience.";
+    elements.preferenceStatus.textContent = !personalized()
+      ? "Personalization is off. You’ll see the general experience."
+      : state.variant === "tailored"
+        ? "Your selected interest is being used on this device only."
+        : "Consent is saved. This demo assigned the general control experience.";
     elements.followStatus.textContent = personalized() ? "Consent is on for this preview" : "Follow-up is off";
     elements.followStatusDot.classList.toggle("is-active", personalized());
-    elements.sendFollowUp.disabled = !window.OfferPersonalization.canSendFollowUp({
+    const deliveryCheck = window.OfferPersonalization.canSendFollowUp({
       consent: state.consent,
       optedOut: state.optedOut,
       suppressed: state.suppressed,
       lastSentAt: state.lastSentAt,
-    }).allowed;
-    if (state.analyticsConsent && !state.visitRecorded) {
+    });
+    elements.sendFollowUp.disabled = !deliveryCheck.allowed;
+    const followUpMessages = {
+      consent: "Turn on personalization consent above to enable the preview.",
+      "opted-out": "Personalization is off; no follow-up preview is available.",
+      suppressed: "Follow-up is suppressed; no preview is available.",
+      frequency: "Preview limit reached: one follow-up per seven days.",
+      eligible: "Preview is available. It will not be sent outside this browser.",
+    };
+    elements.followResult.textContent = followUpMessages[deliveryCheck.reason];
+    if (
+      window.OfferPersonalization.canRecordVisit({
+        analyticsConsent: state.analyticsConsent,
+        visitRecorded: state.visitRecorded,
+        variant: state.variant,
+        consent: state.consent,
+        optedOut: state.optedOut,
+        suppressed: state.suppressed,
+      })
+    ) {
       state.counts[state.variant].visits += 1;
       state.visitRecorded = true;
       saveState();
@@ -134,7 +157,7 @@
   elements.analyticsConsent.addEventListener("change", () => {
     state.analyticsConsent = elements.analyticsConsent.checked;
     if (!state.analyticsConsent) {
-      state.counts = { ...initialState.counts, control: { visits: 0, actions: 0 }, tailored: { visits: 0, actions: 0 } };
+      state.counts = { control: { visits: 0, actions: 0 }, tailored: { visits: 0, actions: 0 } };
       state.visitRecorded = false;
       state.actionRecorded = false;
     }
@@ -143,16 +166,8 @@
   });
 
   elements.optOut.addEventListener("click", () => {
-    state = {
-      ...state,
-      interest: "general",
-      consent: false,
-      optedOut: true,
-      suppressed: true,
-      lastSentAt: null,
-    };
+    state = createInitialState();
     saveState();
-    elements.followResult.textContent = "Personalization is off and your local follow-up history has been cleared.";
     showExperience();
   });
 
@@ -174,15 +189,22 @@
       showExperience();
       return;
     }
-    const message = window.OfferPersonalization.getApprovedVariant(state.interest, personalized());
+    const message = window.OfferPersonalization.getApprovedVariant(
+      state.interest,
+      personalized() && state.variant === "tailored",
+    );
     state.lastSentAt = Date.now();
     saveState();
-    elements.followResult.textContent = `Preview only—not sent: “${message.title}” ${message.copy}`;
     showExperience();
+    elements.followResult.textContent = `Preview only—not sent: “${message.title}” ${message.copy}`;
   });
 
   elements.clinicAction.addEventListener("click", () => {
-    if (!state.analyticsConsent) return;
+    if (
+      !state.analyticsConsent ||
+      !state.visitRecorded ||
+      (state.variant === "tailored" && !personalized())
+    ) return;
     if (!state.actionRecorded) {
       state.counts[state.variant].actions += 1;
       state.actionRecorded = true;

@@ -40,6 +40,30 @@ test("follow-up frequency limit blocks repeat delivery within seven days", () =>
   );
 });
 
+test("experiment includes only opted-in tailored visits and analytics-consented control visits", () => {
+  const consentedAnalytics = { analyticsConsent: true, visitRecorded: false };
+  assert.equal(
+    personalization.canRecordVisit({ ...consentedAnalytics, variant: "control", consent: false }),
+    true,
+  );
+  assert.equal(
+    personalization.canRecordVisit({ ...consentedAnalytics, variant: "tailored", consent: false }),
+    false,
+  );
+  assert.equal(
+    personalization.canRecordVisit({ ...consentedAnalytics, variant: "tailored", consent: true }),
+    true,
+  );
+  assert.equal(
+    personalization.canRecordVisit({ ...consentedAnalytics, variant: "tailored", consent: true, optedOut: true }),
+    false,
+  );
+  assert.equal(
+    personalization.canRecordVisit({ ...consentedAnalytics, variant: "tailored", consent: true, visitRecorded: true }),
+    false,
+  );
+});
+
 test("Wilson interval is bounded and unavailable for an empty sample", () => {
   assert.equal(personalization.wilsonInterval(0, 0), null);
   const interval = personalization.wilsonInterval(5, 10);

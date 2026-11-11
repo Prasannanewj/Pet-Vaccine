@@ -8,7 +8,7 @@
   const approvedVariants = Object.freeze({
     general: Object.freeze({
       title: "A question worth asking your vet.",
-      copy: "Ask a participating clinic whether a canine influenza vaccine conversation is right for your dog.",
+      copy: "Ask a veterinarian whether a canine influenza vaccine conversation is appropriate for your dog.",
     }),
     boarding: Object.freeze({
       title: "Planning a stay away from home?",
@@ -52,6 +52,12 @@
     return { allowed: true, reason: "eligible" };
   }
 
+  function canRecordVisit({ analyticsConsent, visitRecorded, variant, consent, optedOut, suppressed }) {
+    if (!analyticsConsent || visitRecorded) return false;
+    if (variant === "control") return true;
+    return variant === "tailored" && consent && !optedOut && !suppressed;
+  }
+
   function wilsonInterval(actions, sampleSize) {
     if (sampleSize <= 0) return null;
     const z = 1.96;
@@ -74,6 +80,7 @@
     frequencyWindowDays,
     getApprovedVariant,
     canSendFollowUp,
+    canRecordVisit,
     wilsonInterval,
   });
 });
