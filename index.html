@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f8f3">
+    <meta name="description" content="A consent-first canine influenza promotion experience that helps dog owners connect with a veterinarian.">
+    <link rel="icon" href="data:,">
+    <title>A better next step for your dog | Pet Vaccine</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="offer-personalization.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="prototype-banner">Pilot concept · Illustrative content only · Not a live or redeemable offer</div>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Pet Vaccine home">
+        <span class="brand-mark" aria-hidden="true">p</span>
+        <span>pet<span class="brand-light">vaccine</span></span>
+      </a>
+      <a class="header-link" href="#how-it-works">How it works <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> CANINE INFLUENZA · OWNER PILOT</p>
+          <h1>A more helpful<br>way to <span>start a conversation.</span></h1>
+          <p class="hero-intro">Find clear information, see a sample promotion, and decide whether you’d like to talk with a veterinarian. Your dog’s care is always a conversation between you and your vet.</p>
+          <a class="button button-dark" href="#your-next-step">Explore your next step <span aria-hidden="true">↓</span></a>
+          <div class="trust-note"><span class="check-icon" aria-hidden="true">✓</span> No diagnosis. No pressure. Your preferences matter.</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun-disc"></div>
+          <div class="art-caption"><span class="caption-dot"></span> A vet-led conversation starts here</div>
+          <svg class="dog-illustration" viewBox="0 0 430 390" role="img" aria-label="">
+            <path d="M92 311c-24-24-34-60-23-94 8-24 29-39 52-45l15-71c3-14 19-23 32-16l44 23 48-7 32-29c11-10 29-5 34 9l18 57c27 18 42 46 40 77l-3 78c-1 20-17 36-37 36H125c-13 0-25-7-33-18Z" fill="#c7744c"/>
+            <path d="m125 170 12-69c2-13 18-21 30-14l47 25-16 29-44 24Z" fill="#814d39"/>
+            <path d="m294 98 32-29c11-10 28-4 32 10l15 54-39 13Z" fill="#814d39"/>
+            <path d="M166 263c18-36 56-56 99-56 27 0 49 9 66 27l-5 53c-2 15-15 26-30 26h-92c-23 0-43-20-38-50Z" fill="#f3cf9d"/>
+            <path d="M185 250c11-10 26-16 43-16" fill="none" stroke="#573d34" stroke-linecap="round" stroke-width="8"/>
+            <path d="M282 251c11-10 26-16 43-16" fill="none" stroke="#573d34" stroke-linecap="round" stroke-width="8"/>
+            <ellipse cx="227" cy="266" rx="8" ry="10" fill="#44352f"/>
+            <ellipse cx="324" cy="266" rx="8" ry="10" fill="#44352f"/>
+            <path d="M260 294c9-8 22-8 31 0-4 12-11 17-16 17s-12-5-15-17Z" fill="#493631"/>
+            <path d="M275 310c-2 13-13 20-27 17" fill="none" stroke="#725044" stroke-linecap="round" stroke-width="4"/>
+            <path d="M292 310c2 13 13 20 27 17" fill="none" stroke="#725044" stroke-linecap="round" stroke-width="4"/>
+            <path d="M119 318v47c0 11 9 20 20 20h18c11 0 20-9 20-20v-37m101 0v37c0 11 9 20 20 20h18c11 0 20-9 20-20v-48" fill="#97573f"/>
+            <path d="M74 208c-28 1-48 18-48 43 0 13 7 22 17 22 12 0 17-10 19-24" fill="none" stroke="#97573f" stroke-linecap="round" stroke-width="15"/>
+            <circle cx="373" cy="111" r="13" fill="#e1a564"/>
+            <path d="M70 69v23m-11-11h23" stroke="#648578" stroke-linecap="round" stroke-width="5"/>
+          </svg>
+          <div class="art-tag"><span aria-hidden="true">✦</span> Made for the next good question</div>
+        </div>
+      </section>
+
+      <section class="next-step section-wrap" id="your-next-step">
+        <div class="section-heading">
+          <p class="eyebrow">YOUR EXPERIENCE, YOUR CHOICE</p>
+          <h2>Start with what matters to you.</h2>
+          <p>Choose an interest if you’d like. It helps us show relevant sample information—not assess your dog’s health or vaccine needs.</p>
+        </div>
+        <div class="experience-grid">
+          <form class="preferences-card" id="preferences-form">
+            <div class="card-title-row">
+              <span class="step-number">01</span>
+              <div><h3>Your preferences</h3><p>Nothing is required to explore.</p></div>
+            </div>
+            <label for="interest">What would you like to learn about?</label>
+            <select id="interest" name="interest">
+              <option value="general">General information</option>
+              <option value="boarding">Boarding or daycare</option>
+              <option value="social">Time with other dogs</option>
+              <option value="travel">Travel and outings</option>
+            </select>
+            <label class="choice-row">
+              <input id="personalization-consent" type="checkbox">
+              <span class="custom-checkbox" aria-hidden="true"></span>
+              <span><strong>Use my selection to tailor this page.</strong><small>Optional and stored only in this browser.</small></span>
+            </label>
+            <label class="choice-row choice-subtle">
+              <input id="analytics-consent" type="checkbox">
+              <span class="custom-checkbox" aria-hidden="true"></span>
+              <span><strong>Include my clinic-action click in the demo comparison.</strong><small>Optional, anonymous, and stored only in this browser.</small></span>
+            </label>
+            <button type="button" class="text-button" id="opt-out">Turn off personalization and clear my choices</button>
+            <p class="privacy-note" id="preference-status" aria-live="polite">Personalization is off. You’ll see the general experience.</p>
+          </form>
+
+          <div class="offer-card" aria-live="polite">
+            <div class="offer-topline"><span class="offer-label"><span class="sparkle" aria-hidden="true">✳</span> A CONVERSATION STARTER</span><span class="demo-pill">DEMO</span></div>
+            <div class="offer-content">
+              <p class="offer-kicker" id="offer-kicker">CANINE INFLUENZA</p>
+              <h3 id="offer-title">A question worth asking your vet.</h3>
+              <p id="offer-copy">Ask a veterinarian whether a canine influenza vaccine conversation is appropriate for your dog.</p>
+              <div class="offer-terms">
+                <span class="terms-icon" aria-hidden="true">i</span>
+                <p><strong>Illustrative campaign only.</strong> No discount, eligibility, availability, or clinic participation is promised. A veterinarian can discuss what’s appropriate for your dog.</p>
+              </div>
+              <div class="offer-actions">
+                <a class="button button-green" id="clinic-action" href="#clinic-directory">Find a clinic <span aria-hidden="true">↗</span></a>
+                <a class="vet-link" href="#talk-to-vet">Talk with a veterinarian</a>
+              </div>
+            </div>
+            <div class="offer-footer"><span aria-hidden="true">✦</span> Prewritten demo copy · Not for campaign use</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="follow-up-section" id="how-it-works">
+        <div class="follow-up-inner">
+          <div class="follow-copy">
+            <p class="eyebrow">OPTIONAL FOLLOW-UP</p>
+            <h2>Only if you ask us to.</h2>
+            <p>Try a one-time follow-up preview. It’s never sent outside this browser, and we check consent, opt-out, suppression, and the frequency limit before showing it.</p>
+          </div>
+          <div class="follow-control">
+            <div class="follow-state"><span class="status-dot" id="follow-status-dot"></span><span id="follow-status">Follow-up is off</span></div>
+            <button type="button" class="button button-dark button-wide" id="send-follow-up">Preview follow-up</button>
+            <p class="small-print" id="follow-result" aria-live="polite">Turn on personalization consent above to enable the preview.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="clinic-section section-wrap" id="clinic-directory">
+        <div class="section-heading">
+          <p class="eyebrow">YOUR NEXT STEP, CLOSE TO HOME</p>
+          <h2>Meet the people who know your dog.</h2>
+          <p>Clinic listings below are examples for this prototype, not real or verified participating clinics. Contact a clinic directly for services and availability.</p>
+        </div>
+        <div class="clinic-list">
+          <article class="clinic-card">
+            <div class="clinic-icon" aria-hidden="true">⌂</div>
+            <div><span class="clinic-demo">SAMPLE CLINIC</span><h3>Oak & Paws Veterinary</h3><p>Example clinic listing · Portland, OR</p></div>
+            <a href="#talk-to-vet" class="clinic-link">Clinic details <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="clinic-card">
+            <div class="clinic-icon clinic-icon-blue" aria-hidden="true">⌂</div>
+            <div><span class="clinic-demo">SAMPLE CLINIC</span><h3>Riverbend Animal Care</h3><p>Example clinic listing · Portland, OR</p></div>
+            <a href="#talk-to-vet" class="clinic-link">Clinic details <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+        <p class="clinic-disclaimer" id="talk-to-vet"><span aria-hidden="true">↗</span> A clinic team can help you arrange a conversation with a veterinarian. Only your veterinarian can advise on your dog’s individual care.</p>
+      </section>
+
+      <section class="experiment-section">
+        <div class="experiment-inner">
+          <div>
+            <p class="eyebrow">PILOT MEASUREMENT · ON THIS DEVICE</p>
+            <h2>Learn what helps owners take the next step.</h2>
+            <p class="experiment-description">The demo randomly assigns a general or tailored page and counts clinic-link clicks only when you opt in to the comparison. No event leaves this browser.</p>
+          </div>
+          <div class="experiment-report" aria-live="polite">
+            <div class="report-heading"><span>OWNER-TO-CLINIC ACTIONS</span><span class="report-tag">DEMO READOUT</span></div>
+            <div class="report-grid">
+              <div><span>Control · general</span><strong id="control-result">0 / 0</strong><small id="control-rate">No opted-in visits</small></div>
+              <div><span>Experience · tailored</span><strong id="treatment-result">0 / 0</strong><small id="treatment-rate">No opted-in visits</small></div>
+            </div>
+            <div class="uncertainty-row"><span>95% Wilson interval · action rate</span><strong id="uncertainty-result">Not estimable</strong></div>
+            <p class="experiment-limits" id="experiment-limits">Sample size is local to this device and will be too small to draw conclusions. This is not a clinical outcome or a real campaign test.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">p</span><span>pet<span class="brand-light">vaccine</span></span></a>
+      <p>Prototype experience · U.S. canine influenza pilot concept</p>
+      <p>Always consult a veterinarian for individual recommendations.</p>
+    </footer>
+  </body>
+</html>
