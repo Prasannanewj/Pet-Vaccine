@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f8f3">
+    <meta name="description" content="A sample veterinary clinic portal for campaign participation and support.">
+    <link rel="icon" href="data:,">
+    <title>Clinic portal | Pet Vaccine</title>
+    <link rel="stylesheet" href="clinic-portal.css">
+    <script src="clinic-portal.js" defer></script>
+  </head>
+  <body>
+    <div class="demo-banner">Clinic portal concept · Sample data only · No live campaigns, verification, or redemption</div>
+    <div class="portal-shell">
+      <aside class="sidebar" aria-label="Clinic portal navigation">
+        <a class="brand" href="index.html" aria-label="Pet Vaccine home">
+          <span class="brand-mark" aria-hidden="true">p</span>
+          <span>pet<span class="brand-light">vaccine</span></span>
+        </a>
+        <p class="workspace-label">SAMPLE WORKSPACE</p>
+        <div class="clinic-identity">
+          <span class="clinic-avatar" aria-hidden="true">OP</span>
+          <span><strong>Oak &amp; Paws Veterinary</strong><small>Portland, Oregon · Demo</small></span>
+        </div>
+        <nav class="portal-nav">
+          <a class="active" href="#overview"><span aria-hidden="true">⌂</span> Overview</a>
+          <a href="#campaigns"><span aria-hidden="true">◈</span> Campaigns</a>
+          <a href="#resources"><span aria-hidden="true">▤</span> Resources</a>
+          <a href="#redemptions"><span aria-hidden="true">↗</span> Redemptions</a>
+          <a href="#reports"><span aria-hidden="true">▥</span> Reports</a>
+          <a href="#loyalty"><span aria-hidden="true">✳</span> Loyalty</a>
+        </nav>
+        <div class="sidebar-help">
+          <span class="help-icon" aria-hidden="true">?</span>
+          <strong>Need a hand?</strong>
+          <p>Get help with enrollment, offer terms, or staff training.</p>
+          <button type="button" class="link-button" id="support-request">Contact pilot support <span aria-hidden="true">↗</span></button>
+          <p class="support-status" id="support-status" aria-live="polite"></p>
+        </div>
+        <a class="back-link" href="index.html">← Owner experience</a>
+      </aside>
+
+      <main class="portal-main">
+        <header class="topbar">
+          <div class="breadcrumbs">Clinic workspace <span>/</span> Overview</div>
+          <label class="role-switch">View as
+            <select id="staff-role" aria-label="Preview staff role">
+              <option value="manager">Practice manager</option>
+              <option value="veterinarian">Veterinary professional</option>
+              <option value="staff">Clinic staff</option>
+            </select>
+          </label>
+        </header>
+
+        <div class="page-content">
+          <section class="welcome-row" id="overview">
+            <div>
+              <p class="eyebrow">CLINIC PARTICIPATION</p>
+              <h1>Good morning, Jordan</h1>
+              <p class="welcome-copy">A simple place to review campaign details, prepare your team, and track clinic activity.</p>
+            </div>
+            <span class="sample-badge"><span aria-hidden="true">●</span> Sample workspace</span>
+          </section>
+
+          <div class="notice" role="note">
+            <span class="notice-icon" aria-hidden="true">i</span>
+            <p><strong>Concept preview, not a live program.</strong> The U.S. canine multivitamin pilot, sample offers, and clinic activity shown here are illustrative only. Nothing is approved, redeemable, or saved to a clinic account.</p>
+          </div>
+
+          <section class="stat-grid" aria-label="Sample clinic activity">
+            <article class="stat-card">
+              <span class="stat-icon green-icon" aria-hidden="true">◈</span>
+              <div><p>Campaign participation</p><strong id="campaign-summary">Not enrolled</strong><small>Enrollment requires clinic verification and campaign approval</small></div>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon blue-icon" aria-hidden="true">↗</span>
+              <div><p>Redemptions</p><strong>—</strong><small>Not connected · No live redemptions</small></div>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon orange-icon" aria-hidden="true">◷</span>
+              <div><p>Staff processing time</p><strong>Not measured</strong><small>Baseline needed before pilot reporting</small></div>
+            </article>
+          </section>
+
+          <div class="content-grid">
+            <section class="panel campaign-panel" id="campaigns">
+              <div class="panel-heading">
+                <div><p class="eyebrow">PILOT OPPORTUNITY</p><h2>Canine multivitamin campaign</h2></div>
+                <span class="status-chip status-review">Approval required</span>
+              </div>
+              <p class="panel-copy">A proposed U.S. pilot for canine multivitamins. Promotion of growth-related products or claims is excluded unless separately approved.</p>
+              <div class="campaign-meta">
+                <div><span>Campaign dates</span><strong>Not yet set</strong></div>
+                <div><span>Offer terms</span><strong>Pending review</strong></div>
+                <div><span>Clinic status</span><strong id="clinic-status">Verification needed</strong></div>
+              </div>
+              <div class="approval-note"><span aria-hidden="true">!</span><p>Portfolio, clinical, legal, regulatory, and commercial approval is required before promotion. No offer or product claim is available in this preview.</p></div>
+              <button type="button" class="button button-primary" id="enroll-campaign">Request campaign enrollment <span aria-hidden="true">→</span></button>
+              <p class="form-status" id="enrollment-status" aria-live="polite">Complete clinic verification to request enrollment.</p>
+            </section>
+
+            <section class="panel verification-panel" id="verification">
+              <div class="panel-heading">
+                <div><p class="eyebrow">GET STARTED</p><h2>Clinic verification</h2></div>
+                <span class="step-badge">01</span>
+              </div>
+              <p class="panel-copy">Register your practice for review. Details entered here stay in this page only and are not submitted.</p>
+              <form id="clinic-registration" novalidate>
+                <label for="clinic-name">Practice legal name</label>
+                <input id="clinic-name" name="clinicName" autocomplete="organization" required>
+                <label for="clinic-email">Practice email</label>
+                <input id="clinic-email" name="clinicEmail" type="email" autocomplete="email" required>
+                <label for="clinic-license">Veterinary license / practice ID</label>
+                <input id="clinic-license" name="clinicLicense" autocomplete="off" required>
+                <button type="submit" class="button button-outline">Preview verification request</button>
+                <p class="form-status" id="verification-status" aria-live="polite">Verification is required before a clinic can enroll.</p>
+              </form>
+            </section>
+          </div>
+
+          <section class="panel resources-panel" id="resources">
+            <div class="panel-heading">
+              <div><p class="eyebrow">STAFF TOOLKIT</p><h2>Approved materials &amp; support</h2></div>
+              <span class="status-chip status-muted">No materials approved</span>
+            </div>
+            <p class="panel-copy">Find campaign terms, training, and help in one place. These previews are not cleared for clinic or owner use.</p>
+            <div class="resource-grid">
+              <article class="resource-card">
+                <span class="resource-icon" aria-hidden="true">▤</span>
+                <div><span class="resource-type">EDUCATION · DRAFT</span><h3>Conversation guide</h3><p>Sample language for veterinarian-led conversations. Clinical review required.</p><button class="link-button resource-preview" type="button" data-resource="Conversation guide">Preview guide <span aria-hidden="true">↗</span></button></div>
+              </article>
+              <article class="resource-card">
+                <span class="resource-icon terms-resource" aria-hidden="true">§</span>
+                <div><span class="resource-type">OFFER TERMS · DRAFT</span><h3>Campaign terms</h3><p>Dates, eligibility, limits, and offer details are not yet established.</p><button class="link-button resource-preview" type="button" data-resource="Campaign terms">Preview terms <span aria-hidden="true">↗</span></button></div>
+              </article>
+              <article class="resource-card">
+                <span class="resource-icon training-resource" aria-hidden="true">▶</span>
+                <div><span class="resource-type">TRAINING · DEMO</span><h3>Staff walkthrough</h3><p>Learn the proposed enrollment and redemption flow in this concept.</p><button class="link-button resource-preview" type="button" data-resource="Staff walkthrough">Preview training <span aria-hidden="true">↗</span></button></div>
+              </article>
+            </div>
+            <p class="resource-feedback" id="resource-feedback" aria-live="polite"></p>
+            <p class="resource-footnote">Any materials approved for a future pilot should show their owner, approval status, and last-reviewed date.</p>
+          </section>
+
+          <div class="content-grid workflow-grid">
+            <section class="panel redemption-panel" id="redemptions">
+              <div class="panel-heading">
+                <div><p class="eyebrow">CLINIC WORKFLOW</p><h2>Redemption check</h2></div>
+                <span class="status-chip status-muted">Simulation only</span>
+              </div>
+              <p class="panel-copy">Preview the information a staff member might need. This form does not check offer eligibility or create a redemption.</p>
+              <form id="redemption-form" novalidate>
+                <label for="offer-code">Campaign / offer code</label>
+                <input id="offer-code" name="offerCode" autocomplete="off" placeholder="e.g., DEMO-1234">
+                <label for="visit-reference">Non-identifying visit reference</label>
+                <input id="visit-reference" name="visitReference" autocomplete="off" placeholder="Do not enter owner or patient details">
+                <label class="check-row"><input id="vet-recommended" type="checkbox"><span>Veterinary professional has recommended the product for this patient.</span></label>
+                <button type="submit" class="button button-primary">Check demo entry <span aria-hidden="true">→</span></button>
+                <p class="form-status" id="redemption-status" aria-live="polite">Offer eligibility cannot be verified in this concept.</p>
+              </form>
+            </section>
+
+            <section class="panel loyalty-panel" id="loyalty">
+              <div class="panel-heading">
+                <div><p class="eyebrow">OPTIONAL EXPERIENCE</p><h2>Loyalty preview</h2></div>
+                <span class="status-chip status-muted">Off</span>
+              </div>
+              <p class="panel-copy">A possible opt-in experience for clinics. It is not a condition of campaign participation.</p>
+              <div class="loyalty-terms">
+                <strong>Participation would always be optional.</strong>
+                <ul>
+                  <li>Benefits and eligibility must be published before opt-in.</li>
+                  <li>No purchase, product use, or clinical decision should be influenced by rewards.</li>
+                  <li>Veterinary professionals make individual care recommendations.</li>
+                </ul>
+                <p>No loyalty rules or benefits have been approved for this pilot.</p>
+              </div>
+              <div class="loyalty-actions">
+                <button type="button" class="button button-outline" id="loyalty-opt-in">Preview opt-in</button>
+                <button type="button" class="text-button" id="loyalty-opt-out" disabled>Turn off</button>
+              </div>
+              <p class="form-status" id="loyalty-status" aria-live="polite">No preference saved.</p>
+            </section>
+          </div>
+
+          <section class="panel report-panel" id="reports" aria-labelledby="report-title">
+            <div class="panel-heading">
+              <div><p class="eyebrow">CLINIC ACTIVITY</p><h2 id="report-title">Activity &amp; reporting</h2></div>
+              <label class="period-switch">Reporting period
+                <select id="report-period">
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                </select>
+              </label>
+            </div>
+            <p class="panel-copy">Use the role selector above to preview role-based access. Activity examples are fictional; no owner or patient information is shown.</p>
+            <div class="report-summary" id="report-summary">
+              <div><span>Campaign actions</span><strong>Sample only</strong></div>
+              <div><span>Offer redemptions</span><strong>Not connected</strong></div>
+              <div><span>Staff time</span><strong>Baseline missing</strong></div>
+            </div>
+            <div class="activity-wrap">
+              <table>
+                <caption>Illustrative clinic activity · <span id="period-caption">last 30 days</span></caption>
+                <thead><tr><th scope="col">Activity</th><th scope="col">Status</th><th scope="col">Date</th></tr></thead>
+                <tbody>
+                  <tr><td>Staff training preview opened</td><td><span class="table-status">Demo</span></td><td>Oct 18</td></tr>
+                  <tr><td>Campaign enrollment request</td><td><span class="table-status">Not submitted</span></td><td>—</td></tr>
+                  <tr><td>Redemption check</td><td><span class="table-status">No live records</span></td><td>—</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="data-gap"><span aria-hidden="true">!</span><p><strong>Data gaps:</strong> No verified clinic roster, approved campaign dates or terms, redemption integration, or staff-time baseline is available. Sample activity cannot be used to assess the 60% action target or two-minute processing target.</p></div>
+            <p class="role-note" id="role-note" aria-live="polite">Practice managers can review clinic-level activity and reporting gaps.</p>
+          </section>
+
+          <footer class="portal-footer">
+            <span>Pet Vaccine · clinic portal concept</span>
+            <span>Clinical decisions remain with veterinary professionals.</span>
+            <a href="index.html">Owner experience</a>
+          </footer>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
